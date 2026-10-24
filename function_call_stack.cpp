@@ -22,6 +22,7 @@ private:
         string functionName;
     };
     // TODO (Part C): Declare Node *top for the node that must leave next.
+    Node* top;
 
 public:
     // TODO (Part C): Write a constructor that creates an empty stack.
