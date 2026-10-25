@@ -43,7 +43,7 @@ public:
    void push(string functionName)
     {
         Node *newNode = new Node;
-        newNode->functionName = funtionName;
+        newNode->functionName = functionName;
         newNode->next = top;
         top = newNode;
     }
