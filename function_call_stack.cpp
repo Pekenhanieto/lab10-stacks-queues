@@ -110,7 +110,7 @@ int main()
     // TODO (Part D): Use peek and pop to demonstrate LIFO with descriptive output.
     if (callStacks.peek(name))
     {    
-         cout << "Top of the stack: " << name << endl;
+         cout << "\n" << "Top of the stack: " << name << endl;
     }
 
     while (callStacks.pop(name))
@@ -119,7 +119,7 @@ int main()
         }    
     // TODO (Part D): Pop remaining calls, then demonstrate an unsuccessful pop on an empty stack.
     bool success = callStacks.pop(name);
-    cout << "Pop on empty stack succeeded? " << success << endl;
+    cout << "\n" << "Pop on empty stack succeeded? " << success << endl;
 
     return 0;
 }
