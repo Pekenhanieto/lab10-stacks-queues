@@ -26,14 +26,68 @@ private:
 
 public:
     // TODO (Part C): Write a constructor that creates an empty stack.
-
+    //Stack() = default; // Creates a empty stack
+    FunctionCallStack() 
+    {
+        top = nullptr;
+    }
+    
     // ===== Resolve these TODOs later (Part D) =====
 
     // TODO (Part D): Write isEmpty as a const member function.
+    bool isEmpty() const
+    {
+        return top == nullptr;    // Is going to return "top == nullptr
+    }
     // TODO (Part D): Write push to add a function name at top.
+   void push(string functionName)
+    {
+        Node *newNode = new Node;
+        newNode->functionName = funtionName;
+        newNode->next = top;
+        top = newNode;
+    }
     // TODO (Part D): Write pop. It returns bool and uses string& removedFunctionName.
+    bool pop(string& removedFunctionName)
+    { 
+        if (isEmpty())
+        {
+            return false;
+        }
+        
+        removedFunctionName = top->functionName;
+        Node *temp = top;
+        top = top->next;
+       // temp = nullptr;
+        delete temp;
+      
+
+        return true;
+    }
+    
+
     // TODO (Part D): Write peek. It returns bool and uses string& topFunctionName.
+    bool peek(string& topFunctionName) const
+    {
+        if (isEmpty())
+        { 
+            return false;
+        }
+
+        topFunctionName = top->functionName;
+        return true;
+    }
+
     // TODO (Part D): Write a destructor that releases every dynamic node.
+    ~FunctionCallStack()
+    {
+        while(top != nullptr)
+            {
+                Node *temp = top;
+                top = top->next;
+                delete temp;
+            }
+    }
 };
 
 int main()
