@@ -93,13 +93,33 @@ public:
 int main()
 {
     cout << boolalpha;
-
+  
     // ===== Resolve these TODOs later (Part D) =====
 
     // TODO (Part D): Create a FunctionCallStack object.
+    FunctionCallStack callStacks;
+    
+    
     // TODO (Part D): Push main, loadSchedule, and formatSchedule in that order.
+    callStacks.push("main");
+    callStacks.push("loadSchedule");
+    callStacks.push("formatSchedule");
+
+    
+    string name;
     // TODO (Part D): Use peek and pop to demonstrate LIFO with descriptive output.
+    if (callStacks.peek(name))
+    {    
+         cout << "Top of the stack: " << name << endl;
+    }
+
+    while (callStacks.pop(name))
+        {
+            cout << "Returning from: " << name << endl;
+        }    
     // TODO (Part D): Pop remaining calls, then demonstrate an unsuccessful pop on an empty stack.
+    bool success = callStacks.pop(name);
+    cout << "Pop on empty stack succeeded? " << success << endl;
 
     return 0;
 }
@@ -111,14 +131,16 @@ int main()
  * When push("formatSchedule") executes, what must newNode->next receive before top
  * changes? Explain why reversing those two assignments would lose the previous top.
  * Answer:
+ * newNode->next must receive the current top (which points to loadSchedule) before top changes. If top = newNode ran first, top would be overwritten and the address of the previous top node would be lost, so the existing nodes could no longer be reached and would leak memory.
  *
  * D2 — Returning from a function
  * After main, loadSchedule, and formatSchedule are pushed in that order, list the
  * order in which three successful pop calls must return their names. Explain LIFO.
  * Answer:
- *
+ *    The three pops return formatSchedule, then loadSchedule, then main. This is LIFO (Last In, First Out): the most recently pushed call is the first one removed, just like functions return in the reverse order they were called.
+ * 
  * D3 — Destructor order
  * Why must the destructor save a next-node address before deleting the current node?
  * Answer:
- *
+ *    The destructor must save the next-node address (move top to top->next) before deleting the current node, because once a node is deleted its memory is freed and its next pointer can no longer be safely read. Without saving it first, the rest of the list would be lost and reading freed memory is undefined behavior.
  */
